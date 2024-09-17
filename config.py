@@ -40,36 +40,16 @@ DB_NAME = os.environ.get("DATABASE_NAME", "filesharexbot")
 
 
 
-
-# Default messages with HTML for image captions
 START_MSG = os.environ.get(
     "START_MESSAGE",
-    """Hello {first}<br><br>
-    I can store private files in Specified Channel and other users can access it from special link.<br><br>
-    <img src="{image_url}" alt="Image" style="max-width: 100%;"><br>
-    <small>Caption for the image</small>"""
+    "Hello {first}\n\nI can store private files in Specified Channel and other users can access it from special link."
 )
-
 FORCE_MSG = os.environ.get(
     "FORCE_SUB_MESSAGE",
-    """Hello {first}<br><br>
-    <b>You need to join in my Channel/Group to use me<br><br>Kindly Please join Channel</b><br><br>
-    <img src="{image_url}" alt="Image" style="max-width: 100%;"><br>
-    <small>Caption for the image</small>"""
+    "Hello {first}\n\n<b>You need to join in my Channel/Group to use me\n\nKindly Please join Channel</b>"
+)
 )
 
-def generate_message(message_template, first_name, image_url):
-    return message_template.format(first=first_name, image_url=image_url)
-
-# Example usage
-first_name = "Alice"
-image_url = "https://i.ibb.co/k6hJcqX/temp-image.jpg"  # Replace with actual image URL
-
-start_message = generate_message(START_MSG, first_name, image_url)
-force_message = generate_message(FORCE_MSG, first_name, image_url)
-
-print(start_message)
-print(force_message)
 
 try:
     ADMINS=[]
