@@ -63,7 +63,7 @@ def generate_message(message_template, first_name, image_url):
 
 # Example usage
 first_name = "Alice"
-image_url = "https://example.com/image.png"  # Replace with actual image URL
+image_url = "https://i.ibb.co/k6hJcqX/temp-image.jpg"  # Replace with actual image URL
 
 start_message = generate_message(START_MSG, first_name, image_url)
 force_message = generate_message(FORCE_MSG, first_name, image_url)
