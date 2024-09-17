@@ -31,13 +31,46 @@ PORT = os.environ.get("PORT", "8080")
 DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://vikas:vikas@vikas.yfezexk.mongodb.net/?retryWrites=true&w=majority")
 DB_NAME = os.environ.get("DATABASE_NAME", "filesharexbot")
 
-#force sub channel id, if you want enable force sub
-FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "-1002109545727"))
 
-TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 
-#start message
-START_MSG = os.environ.get("START_MESSAGE", "Hello {first}\n\nI can store private files in Specified Channel and other users can access it from special link.")
+
+
+
+
+
+
+
+
+# Default messages with HTML for image captions
+START_MSG = os.environ.get(
+    "START_MESSAGE",
+    """Hello {first}<br><br>
+    I can store private files in Specified Channel and other users can access it from special link.<br><br>
+    <img src="{image_url}" alt="Image" style="max-width: 100%;"><br>
+    <small>Caption for the image</small>"""
+)
+
+FORCE_MSG = os.environ.get(
+    "FORCE_SUB_MESSAGE",
+    """Hello {first}<br><br>
+    <b>You need to join in my Channel/Group to use me<br><br>Kindly Please join Channel</b><br><br>
+    <img src="{image_url}" alt="Image" style="max-width: 100%;"><br>
+    <small>Caption for the image</small>"""
+)
+
+def generate_message(message_template, first_name, image_url):
+    return message_template.format(first=first_name, image_url=image_url)
+
+# Example usage
+first_name = "Alice"
+image_url = "https://example.com/image.png"  # Replace with actual image URL
+
+start_message = generate_message(START_MSG, first_name, image_url)
+force_message = generate_message(FORCE_MSG, first_name, image_url)
+
+print(start_message)
+print(force_message)
+
 try:
     ADMINS=[]
     for x in (os.environ.get("ADMINS", "").split()):
