@@ -39,3 +39,18 @@ USER_REPLY_TEXT = "❌Don't send me messages directly I'm only File Share bot!"
 BOT_STATS_TEXT = "<b>BOT UPTIME</b>\n{uptime}"
 
 # Other settings...
+# Logger configuration
+LOG_FILE_NAME = "filesharingbot.txt"
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="[%(asctime)s - %(levelname)s] - %(name)s - %(message)s",
+    datefmt='%d-%b-%y %H:%M:%S',
+    handlers=[
+        RotatingFileHandler(LOG_FILE_NAME, maxBytes=50000000, backupCount=10),
+        logging.StreamHandler()
+    ]
+)
+
+def LOGGER(name: str) -> logging.Logger:
+    return logging.getLogger(name)
