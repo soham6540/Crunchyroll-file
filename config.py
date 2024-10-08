@@ -32,6 +32,7 @@ TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 # Force subscribe channel
 FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "-1002109545727")  # Add your channel ID here
 
+BOT_STATS_TEXT = "<b>BOT UPTIME</b>\n{uptime}"
 # Messages
 START_MSG = os.environ.get("START_MESSAGE", "Hello {first}...")
 FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "Hello {first}...")
@@ -63,3 +64,4 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 def LOGGER(name: str) -> logging.Logger:
     return logging.getLogger(name)
+
