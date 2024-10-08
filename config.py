@@ -1,18 +1,17 @@
-#(©)CodeXBotz
-
+# (©)CodeXBotz
 
 import os
 import logging
 from logging.handlers import RotatingFileHandler
 
 # Bot token @Botfather
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "7291162561:AAFFB1Sn2dHW-JO27MEigL8rbRCrtsymcxc")
+TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "your_token_here")
 
 # Your API ID from my.telegram.org
 APP_ID = int(os.environ.get("APP_ID", "20733274"))
 
 # Your API Hash from my.telegram.org
-API_HASH = os.environ.get("API_HASH", "a74c1ddba4508413caf9bf608ac8d9e1")
+API_HASH = os.environ.get("API_HASH", "your_api_hash_here")
 
 # Your db channel Id
 CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1002302038082"))
@@ -25,42 +24,29 @@ PORT = os.environ.get("PORT", "8080")
 
 # Database 
 DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://vikas:vikas@vikas.yfezexk.mongodb.net/?retryWrites=true&w=majority")
-DB_NAME = os.environ.get("DATABASE_NAME", "filesharexbot")
+DB_NAME = os.environ.get("DATABASE_NAME", "sharexbotjjkverse")
 
 # Number of workers for the bot
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 
-START_MSG = os.environ.get(
-    "START_MESSAGE",
-    "Hello {first}\n\nI can store private files in Specified Channel and other users can access it from special link."
-)
-FORCE_MSG = os.environ.get(
-    "FORCE_SUB_MESSAGE",
-    "Hello {first}\n\n<b>You need to join in my Channel/Group to use me\n\nKindly Please join Channel</b>"
-)
+# Force subscribe channel
+FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "-1002109545727")  # Add your channel ID here
+
+# Messages
+START_MSG = os.environ.get("START_MESSAGE", "Hello {first}...")
+FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "Hello {first}...")
 
 try:
     ADMINS = [int(x) for x in os.environ.get("ADMINS", "").split() if x.isdigit()]
 except ValueError:
     raise Exception("Your Admins list does not contain valid integers.")
 
-# Force sub message 
-FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "Hello {first}\n\n<b>You need to join in my Channel/Group to use me\n\nKindly Please join Channel</b>")
-
-# Set your Custom Caption here, Keep None for Disable Custom Caption
+# Other settings
 CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
-
-# Set True if you want to prevent users from forwarding files from bot
 PROTECT_CONTENT = os.environ.get('PROTECT_CONTENT', "False") == "True"
-
-# Set true if you want Disable your Channel Posts Share button
 DISABLE_CHANNEL_BUTTON = os.environ.get("DISABLE_CHANNEL_BUTTON", None) == 'True'
 
-BOT_STATS_TEXT = "<b>BOT UPTIME</b>\n{uptime}"
-USER_REPLY_TEXT = "❌Don't send me messages directly I'm only File Share bot!"
-
 ADMINS.append(OWNER_ID)
-ADMINS.append(6574393060)
 
 LOG_FILE_NAME = "filesharingbot.txt"
 
@@ -69,11 +55,7 @@ logging.basicConfig(
     format="[%(asctime)s - %(levelname)s] - %(name)s - %(message)s",
     datefmt='%d-%b-%y %H:%M:%S',
     handlers=[
-        RotatingFileHandler(
-            LOG_FILE_NAME,
-            maxBytes=50000000,
-            backupCount=10
-        ),
+        RotatingFileHandler(LOG_FILE_NAME, maxBytes=50000000, backupCount=10),
         logging.StreamHandler()
     ]
 )
